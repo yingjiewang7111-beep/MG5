@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     // Add a MEMBER VARIABLE here for the NavMeshAgent Component named _agent.
     // It does NOT need to be tunable in the Inspector.
 
-    // ??? _agent
+    private NavMeshAgent _agent;
 
     // STEP 1 -----------------------------------------------------------------
 
@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     // We need a Vector3 to keep track of their LAST KNOWN LOCATION.
     // Add a MEMBER VARIABLE here for that location.
     // It does NOT need to be tunable in the Inspector.
-    
+    private Vector3 _lastKnownLocation;
 
     // STEP 4 -----------------------------------------------------------------
 
@@ -47,12 +47,15 @@ public class Player : MonoBehaviour
     //      to use GetComponent to grab this GameObject's NavMeshAgent and store
     //      it in the _agent MEMBER VARIABLE.
     //
-    //private void ????()
-    //{
-    //
-    //    _mainCamera = Camera.main;
-    //    _animator = GetComponent<Animator>();
-    //}
+    private void Start()
+    {
+    
+        _mainCamera = Camera.main;
+        _animator = GetComponent<Animator>();
+        _agent = GetComponent<NavMeshAgent>();
+
+        _lastKnownLocation = transform.position;
+    }
     // STEP 2 -----------------------------------------------------------------
 
     // ------------------------------------------------------------------------
@@ -73,7 +76,7 @@ public class Player : MonoBehaviour
                 //      player clicked.
                 // This location is stored in mouseHitPosition.
                 // Make the NavMeshAgent move to this position.
-                //
+                _agent.SetDestination(mouseHitPosition);
                 // Feature 2 should work after this step.
 
 
@@ -84,7 +87,7 @@ public class Player : MonoBehaviour
                 //      walk somewhere new, we should also store our CURRENT
                 //      POSITION in our LAST KNOWN LOCATION MEMBER VARIABLE
                 //      here.
-                // 
+                _lastKnownLocation = transform.position;
                 // You'll need this GameObject's Transform's position.
                 // See an example in the documentation: https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Transform-position.html
 
@@ -104,7 +107,10 @@ public class Player : MonoBehaviour
         // You'll need to read the NavMeshAgent documentation and choose
         //      the correct one: https://docs.unity3d.com/6000.0/Documentation/ScriptReference/AI.NavMeshAgent.html
         // Feature 3 should work after this.
-
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _agent.Warp(_lastKnownLocation);
+        }
 
         // STEP 6 -------------------------------------------------------------
 
