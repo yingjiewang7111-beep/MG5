@@ -4,9 +4,7 @@
 In contrast, physics-based mocement is better for action combat games, like Super Smash Bros. Ultimate. These games require players to have more control over movement. Players need quick responses and free control the direction, speed, and actions of their characters like jumping.
 
 
-2. The for loop checks every bird in the _birds array. Vector3.Distance() is used to calculate the distance between a bird and the player. If the distance is less than or equal to _interactDistance, the bird will run away from the player.
-
-This means all birds that are close enough to the player will run away.
+2. The for loop checks every bird in the _birds array. Vector3.Distance() is used to calculate the distance between a bird and the player. If the distance is less than or equal to _interactDistance, the bird will run away from the player.This means all birds that are close enough to the player will run away.
 
 
 ## Open-Source Assets
